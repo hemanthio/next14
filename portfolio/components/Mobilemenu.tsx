@@ -1,4 +1,6 @@
-import React from 'react'
+"use client"
+
+import React, { useEffect,useState } from 'react'
 import { Sheet, SheetClose, SheetContent, SheetFooter, SheetTrigger } from './ui/sheet'
 import { Button } from './ui/button'
 import { Menu } from 'lucide-react'
@@ -8,9 +10,16 @@ import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 
 function Mobilemenu() {
-    const location =usePathname()
+    const location =usePathname();
+  
+   const [open,setOpen]=useState(false)
+
+    useEffect(()=>{
+   setOpen(false);
+    },[location])
   return (
-  <Sheet>
+  <Sheet open={open} onOpenChange={(state)=>setOpen(state)}>
+
     <SheetTrigger asChild>
 <Button variant="outline" size='icon'>
     <Menu className='w-4 h-4' />
